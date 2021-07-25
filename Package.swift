@@ -4,8 +4,7 @@ import PackageDescription
 let package = Package(
     name: "GoogleMaps",
     platforms: [
-        .iOS("14"),
-        .macOS("99"),
+        .iOS(.v14),
     ],
     products: [
         .library(
