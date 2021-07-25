@@ -4,9 +4,11 @@ import PackageDescription
 let package = Package(
     name: "GoogleMaps",
     platforms: [
-        .iOS(.v14),
+        .ios(.v14),
     ],
     products: [
+        #if targetEnvironment(macCatalyst)
+        #else
         .library(
             name: "GoogleMapsBase",
             targets: [
@@ -40,8 +42,11 @@ let package = Package(
                 "GoogleMapsBase"
             ]
         )
+        #endif
     ],
     targets: [
+        #if targetEnvironment(macCatalyst)
+        #else
         .binaryTarget(
             name: "GoogleMaps",
             url: "https://github.com/YAtechnologies/GoogleMaps-SP/releases/download/5.0.0/GoogleMaps.xcframework.zip",
@@ -67,5 +72,6 @@ let package = Package(
             url: "https://github.com/YAtechnologies/GoogleMaps-SP/releases/download/5.0.0/GooglePlaces.xcframework.zip",
             checksum: "703694603a35710277f98425d7f7b24ba409524dfd7275fcce442478980a8bee"
         )
+        #endif
     ]
 )
